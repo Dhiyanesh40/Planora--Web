@@ -1,73 +1,213 @@
-# Welcome to your Lovable project
+# Planora - Smart Trip Planner 🗺️
 
-## Project info
+A full-stack travel itinerary planning application with budget-optimized activity generation.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**Developed by:** Dhiyanesh
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+- ✨ Create and manage travel itineraries
+- 💰 Budget-based activity generation
+- 📅 Day-by-day trip planning
+- 🔐 Secure JWT authentication
+- 🎨 Beautiful UI with shadcn/ui components
+- 📱 Responsive design
 
-**Use Lovable**
+## 🛠️ Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+### Frontend
+- **React 18** with TypeScript
+- **Vite** - Fast build tool
+- **Tailwind CSS** - Utility-first styling
+- **shadcn/ui** - Beautiful UI components
+- **Framer Motion** - Animations
+- **React Router v6** - Navigation
+- **React Query** - Data fetching
 
-Changes made via Lovable will be committed automatically to this repo.
+### Backend
+- **Node.js** with Express
+- **TypeScript** - Type safety
+- **MySQL** - Database
+- **JWT** - Authentication
+- **bcrypt** - Password hashing
 
-**Use your preferred IDE**
+## 📋 Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js (v18 or higher) - [Install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- MySQL (v8.0 or higher)
+- npm or yarn
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## ⚙️ Setup Instructions
 
-Follow these steps:
+### 1. Clone the Repository
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```bash
+git clone https://github.com/aditya0523k/Smart-Travel-Itinerary-Planner.git
+cd Smart-Travel-Itinerary-Planner
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 2. Database Setup
 
-# Step 3: Install the necessary dependencies.
-npm i
+See [MYSQL_SETUP.md](./MYSQL_SETUP.md) for complete MySQL setup instructions.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+**Quick setup:**
+
+```bash
+# Create database
+mysql -u root -p
+CREATE DATABASE planora_db;
+
+# Run schema
+mysql -u root -p planora_db < server/schema.sql
+```
+
+### 3. Backend Setup
+
+```bash
+# Navigate to server directory
+cd server
+
+# Install dependencies
+npm install
+
+# Create .env file
+cp .env.example .env
+
+# Edit .env with your MySQL credentials
+# DB_HOST=localhost
+# DB_USER=root
+# DB_PASSWORD=your_mysql_password
+# DB_NAME=planora_db
+# JWT_SECRET=your-secret-key
+
+# Start backend server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Backend will run on: `http://localhost:3000`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 4. Frontend Setup
 
-**Use GitHub Codespaces**
+```bash
+# Navigate back to root directory
+cd ..
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Install dependencies
+npm install
 
-## What technologies are used for this project?
+# Create .env file (optional)
+cp .env.example .env
 
-This project is built with:
+# Start frontend development server
+npm run dev
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Frontend will run on: `http://localhost:8080` or `http://localhost:8081`
 
-## How can I deploy this project?
+## 🏗️ Project Structure
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+```
+├── server/               # Backend (Express + MySQL)
+│   ├── src/
+│   │   ├── config/      # Database configuration
+│   │   ├── middleware/  # Auth & error handling
+│   │   ├── routes/      # API routes
+│   │   └── server.ts    # Express app
+│   ├── schema.sql       # MySQL database schema
+│   └── package.json
+│
+├── src/                 # Frontend (React)
+│   ├── components/      # UI components
+│   ├── pages/          # Page components
+│   ├── contexts/       # React contexts
+│   ├── hooks/          # Custom hooks
+│   └── utils/          # Utility functions
+│
+└── public/             # Static assets
+```
 
-## Can I connect a custom domain to my Lovable project?
+## 🗄️ Database Schema
 
-Yes, you can!
+The application uses a 2-table structure:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- **users** - User accounts with authentication
+- **itineraries** - Trip itineraries with activities stored as JSON
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Activities are stored as a JSON array within the itineraries table for optimal performance.
+
+## 🔑 Environment Variables
+
+### Backend (.env in server/)
+```env
+PORT=3000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=planora_db
+JWT_SECRET=your-secret-jwt-key
+FRONTEND_URL=http://localhost:8080
+```
+
+### Frontend (.env in root/)
+```env
+VITE_API_URL=http://localhost:3000
+```
+
+## 🚢 Deployment
+
+1. Build frontend:
+```bash
+npm run build
+```
+
+2. Build backend:
+```bash
+cd server
+npm run build
+```
+
+3. Deploy to your hosting service (Vercel, Heroku, AWS, etc.)
+
+## 📝 API Endpoints
+
+### Authentication
+- `POST /api/auth/signup` - Create account
+- `POST /api/auth/signin` - Login
+- `POST /api/auth/signout` - Logout
+- `GET /api/auth/user` - Get current user
+
+### Itineraries
+- `GET /api/itineraries` - Get all itineraries
+- `GET /api/itineraries/:id` - Get single itinerary
+- `POST /api/itineraries` - Create itinerary
+- `PUT /api/itineraries/:id` - Update itinerary
+- `DELETE /api/itineraries/:id` - Delete itinerary
+
+### Activities
+- `GET /api/activities/itinerary/:id` - Get activities for itinerary
+- `POST /api/activities` - Create activity
+- `POST /api/activities/bulk` - Bulk create activities
+- `PUT /api/activities/:id` - Update activity
+- `DELETE /api/activities/:id` - Delete activity
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is built from scratch using modern web technologies.
+
+## 👨‍💻 Developer
+
+**Dhiyanesh**
+- GitHub: [@Dhiyanesh27](https://github.com/Dhiyanesh27)
+- Email: nivashinidhiyanesh@gmail.com
+
+---
+
+© 2024 Planora. Crafted with ❤️ for travelers.
