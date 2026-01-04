@@ -12,6 +12,10 @@ import ItineraryCreate from "./pages/ItineraryCreate";
 import ItineraryDetails from "./pages/ItineraryDetails";
 import ItineraryEdit from "./pages/ItineraryEdit";
 import NotFound from "./pages/NotFound";
+import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import HelpCenter from "./pages/HelpCenter";
+import ContactUs from "./pages/ContactUs";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +34,10 @@ const App = () => (
             <Route path="/itineraries/new" element={<ItineraryCreate />} />
             <Route path="/itineraries/:id" element={<ItineraryDetails />} />
             <Route path="/itineraries/:id/edit" element={<ItineraryEdit />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/help-center" element={<HelpCenter />} />
+            <Route path="/contact-us" element={<ContactUs />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
