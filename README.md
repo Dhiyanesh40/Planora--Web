@@ -42,8 +42,8 @@ A full-stack travel itinerary planning application with budget-optimized activit
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/aditya0523k/Smart-Travel-Itinerary-Planner.git
-cd Smart-Travel-Itinerary-Planner
+git clone https://github.com/Dhiyanesh40/Planora--Web.git
+cd Planora--Web
 ```
 
 ### 2. Database Setup
@@ -102,7 +102,7 @@ cp .env.example .env
 npm run dev
 ```
 
-Frontend will run on: `http://localhost:8080` or `http://localhost:8081`
+Frontend will run on: `http://localhost:8080`
 
 ## 🏗️ Project Structure
 
@@ -205,9 +205,9 @@ This project is built from scratch using modern web technologies.
 ## 👨‍💻 Developer
 
 **Dhiyanesh**
-- GitHub: [@Dhiyanesh27](https://github.com/Dhiyanesh27)
+- GitHub: [@Dhiyanesh40](https://github.com/Dhiyanesh40)
 - Email: nivashinidhiyanesh@gmail.com
 
 ---
 
-© 2024 Planora. Crafted with ❤️ for travelers.
+© 2026 Planora. Crafted with ❤️ for travelers.
