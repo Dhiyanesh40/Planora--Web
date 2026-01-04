@@ -4,6 +4,26 @@ A full-stack travel itinerary planning application with budget-optimized activit
 
 **Developed by:** Dhiyanesh
 
+## 🌐 Live Demo
+
+**[Click here!!](https://planora--web.vercel.app)** to see the live website.
+
+## 🏗️ Architecture
+
+This project uses a modern, fully cloud-based architecture with **100% free hosting**:
+
+- **Frontend:** Deployed on [Vercel](https://vercel.com) - React + Vite application with automatic deployments on every GitHub push
+- **Backend:** Hosted on [Render.com](https://render.com) - Node.js + Express RESTful API server
+- **Database:** MySQL database hosted on [Aiven](https://aiven.io) with SSL encryption
+
+**Data Flow:**
+1. User interacts with the React frontend (Vercel)
+2. Frontend makes API calls to the Express backend (Render)
+3. Backend queries/updates the MySQL database (Aiven)
+4. Data flows back to the user
+
+All services communicate securely over HTTPS with environment-based configuration.
+
 ## 🚀 Features
 
 - ✨ Create and manage travel itineraries
