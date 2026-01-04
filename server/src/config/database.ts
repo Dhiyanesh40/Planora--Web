@@ -15,7 +15,7 @@ export const pool = mysql.createPool({
   queueLimit: 0,
   enableKeepAlive: true,
   keepAliveInitialDelay: 0,
-  ssl: process.env.DB_HOST?.includes('aivencloud.com') ? { rejectUnauthorized: true } : undefined,
+  ssl: process.env.DB_HOST?.includes('aivencloud.com') ? { rejectUnauthorized: false } : undefined,
 });
 
 // Test database connection
