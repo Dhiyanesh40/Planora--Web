@@ -60,18 +60,37 @@ app.use('*', (req, res) => {
 // Error handler
 app.use(errorHandler);
 
-// Start server
+// Start server with retry logic
 const startServer = async () => {
-  try {
-    await testConnection();
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
-      console.log(`📝 Environment: ${process.env.NODE_ENV || 'development'}`);
-      console.log(`📊 Database: MySQL`);
-    });
-  } catch (error) {
-    console.error('Failed to start server:', error);
-    process.exit(1);
+  // Start server immediately without waiting for DB
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`📝 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`📊 Database: MySQL`);
+  });
+
+  // Try to connect to database with retries
+  let retries = 5;
+  const retryDelay = 5000; // 5 seconds
+  
+  while (retries > 0) {
+    try {
+      await testConnection();
+      console.log('✅ Database connected successfully');
+      break;
+    } catch (error) {
+      retries--;
+      console.warn(`⚠️  Database connection failed. Retries left: ${retries}`);
+      
+      if (retries === 0) {
+        console.error('❌ Could not connect to database after multiple attempts');
+        console.error('⚠️  Server is running but database operations will fail');
+        console.error('Please check your database configuration and restart the server');
+      } else {
+        console.log(`Retrying in ${retryDelay / 1000} seconds...`);
+        await new Promise(resolve => setTimeout(resolve, retryDelay));
+      }
+    }
   }
 };
 
